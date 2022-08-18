@@ -7,8 +7,9 @@ import com.lihan.bananacompany.domain.model.toEmployeeEntity
 import com.lihan.bananacompany.domain.repository.CompanyRepository
 import kotlinx.coroutines.flow.Flow
 import kotlinx.coroutines.flow.map
+import javax.inject.Inject
 
-class CompanyRepositoryImpl(
+class CompanyRepositoryImpl @Inject constructor(
     private val dao : CompanyDao
 ) : CompanyRepository {
     override suspend fun insert(employee: Employee) {
