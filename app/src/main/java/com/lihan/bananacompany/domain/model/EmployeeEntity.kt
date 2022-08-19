@@ -23,7 +23,7 @@ data class EmployeeEntity(
     val email: String,
     val eyeColor: String,
     val favoriteFruit: String,
-    val friends: List<Friend>? = null,
+    val friends: List<Friend> = emptyList(),
     val gender: String,
     val greeting: String,
     val guid: String,
@@ -35,5 +35,5 @@ data class EmployeeEntity(
     val phone: String,
     val picture: String,
     val registered: String,
-    val tags: List<String>? = null
+    val tags: List<String> = emptyList()
 ) : Parcelable

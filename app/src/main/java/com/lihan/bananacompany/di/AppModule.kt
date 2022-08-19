@@ -3,6 +3,8 @@ package com.lihan.bananacompany.di
 import android.content.Context
 import android.util.Log
 import androidx.room.Room
+import com.lihan.bananacompany.data.company.CompanyRepository
+import com.lihan.bananacompany.data.company.CompanyRepositoryImpl
 import com.lihan.bananacompany.data.company.local.LocalDataRepositoryImpl
 import com.lihan.bananacompany.data.company.remote.DataSourceRepositoryImpl
 import com.lihan.bananacompany.data.database.CompanyDao
@@ -38,12 +40,9 @@ object AppModule {
         ).build()
     }
 
-
     @Provides
     @Singleton
-    fun providesCompanyRepository(db : CompanyDataBase) : LocalDataRepository{
-        return LocalDataRepositoryImpl(db.companyDao)
-    }
+    fun providesCompanyDao(companyDataBase: CompanyDataBase) = companyDataBase.companyDao
 
 
     @Provides
@@ -78,17 +77,7 @@ object AppModule {
         }
     }
 
-    @Provides
-    @Singleton
-    fun providesDataSourceRepository(httpClient: HttpClient) : DataSourceRepository{
-        return DataSourceRepositoryImpl(httpClient)
-    }
 
-    @Provides
-    @Singleton
-    fun providesLocalDataRepository(dao: CompanyDao) : LocalDataRepository{
-        return LocalDataRepositoryImpl(dao)
-    }
 
 
 

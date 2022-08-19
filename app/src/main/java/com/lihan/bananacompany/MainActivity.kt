@@ -13,6 +13,7 @@ import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.lihan.bananacompany.data.company.remote.DataSourceRepositoryImpl
+import com.lihan.bananacompany.presetion.company.CompanyScreen
 import com.lihan.bananacompany.ui.theme.BananaCompanyTheme
 import dagger.hilt.android.AndroidEntryPoint
 import io.ktor.client.*
@@ -26,9 +27,8 @@ class MainActivity : ComponentActivity() {
         super.onCreate(savedInstanceState)
         setContent {
             BananaCompanyTheme {
-              LaunchedEffect(key1 = Unit){
 
-              }
+                CompanyScreen()
             }
         }
     }

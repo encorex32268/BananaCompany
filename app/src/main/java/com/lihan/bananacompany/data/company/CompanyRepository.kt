@@ -1,7 +1,7 @@
 package com.lihan.bananacompany.data.company
 
-import com.lihan.bananacompany.domain.model.Employee
+import com.lihan.bananacompany.domain.Result
 
 interface CompanyRepository {
-    suspend fun getEmployees() : List<Employee>
+    suspend fun getEmployees() : Result
 }
