@@ -12,6 +12,8 @@ class DataSourceRepositoryImpl @Inject constructor(
     private val httpClient: HttpClient
 ) : DataSourceRepository {
     override suspend fun getAllEmployee(): List<Employee> {
-        return httpClient.get<List<Employee>>(BuildConfig.BASE_URL)
+        return httpClient.get<List<Employee>>(
+            "https://run.mocky.io/v3/7e83c8ed-ba75-4036-91b2-05bae5fb4cdb"
+        )
     }
 }

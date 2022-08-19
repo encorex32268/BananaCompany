@@ -13,7 +13,7 @@ interface CompanyDao {
     @Insert(onConflict = OnConflictStrategy.REPLACE)
     suspend fun insert(employeeEntity: EmployeeEntity)
 
-    @Query("SELECT　* from EmployeeEntity")
+    @Query("select * from EmployeeEntity ")
     fun getAllEmployee() : Flow<List<EmployeeEntity>>
 
 }

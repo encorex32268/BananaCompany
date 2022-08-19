@@ -22,7 +22,7 @@ import javax.inject.Inject
 class MainActivity : ComponentActivity() {
 
     @Inject
-    lateinit var httpClient: HttpClient
+    lateinit var dataSourceRepositoryImpl: DataSourceRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -30,7 +30,6 @@ class MainActivity : ComponentActivity() {
             BananaCompanyTheme {
               LaunchedEffect(key1 = Unit){
 
-                  val dataSourceRepositoryImpl = DataSourceRepositoryImpl(httpClient)
                   val data = dataSourceRepositoryImpl.getAllEmployee()
                   Log.d("TAG", "onCreate: ${data}")
 
