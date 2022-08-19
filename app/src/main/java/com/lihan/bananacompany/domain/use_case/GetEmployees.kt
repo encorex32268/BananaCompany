@@ -9,7 +9,11 @@ class GetEmployees @Inject constructor(
     private val companyRepository: CompanyRepository
 ){
     suspend operator fun invoke(): Result {
-        return companyRepository.getEmployees()
+        return if (companyRepository.getEmployees().isEmpty()){
+            Result.Fail("Something Wrong")
+        }else{
+            Result.Success(companyRepository.getEmployees())
+        }
     }
 
 }

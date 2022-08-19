@@ -1,5 +1,6 @@
 package com.lihan.bananacompany.data.company.local
 
+import android.util.Log
 import com.lihan.bananacompany.data.database.CompanyDao
 import com.lihan.bananacompany.domain.model.Employee
 import com.lihan.bananacompany.domain.model.toEmployee
@@ -17,11 +18,9 @@ class LocalDataRepositoryImpl @Inject constructor(
             it.toEmployeeEntity()
         })
     }
-    override fun getAllEmployee(): Flow<List<Employee>> {
-        return dao.getAllEmployee()
-            .map {
-                it.map {
-                    it.toEmployee() }
+    override suspend fun getAllEmployee(): List<Employee>{
+        return dao.getAllEmployee().map {
+            it.toEmployee()
         }
     }
 }

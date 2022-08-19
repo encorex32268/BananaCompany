@@ -14,6 +14,6 @@ interface CompanyDao {
     suspend fun insert(employeeEntities: List<EmployeeEntity>)
 
     @Query("select * from EmployeeEntity ")
-    fun getAllEmployee() : Flow<List<EmployeeEntity>>
+    suspend fun getAllEmployee() : List<EmployeeEntity>
 
 }

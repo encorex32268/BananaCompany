@@ -6,5 +6,5 @@ import kotlinx.coroutines.flow.Flow
 
 interface LocalDataRepository {
     suspend fun insert(employees: List<Employee>)
-    fun getAllEmployee() : Flow<List<Employee>>
+    suspend fun getAllEmployee() : List<Employee>
 }

@@ -56,7 +56,7 @@ object AppModule {
             install(Logging){
                 logger = object : Logger{
                     override fun log(message: String) {
-                        Log.d("TAG", "log: ${message}")
+//                        Log.d("TAG", "log: ${message}")
                     }
 
                 }

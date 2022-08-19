@@ -1,5 +1,6 @@
 package com.lihan.bananacompany.data.company.remote
 
+import android.util.Log
 import com.lihan.bananacompany.BuildConfig
 import com.lihan.bananacompany.data.database.CompanyDao
 import com.lihan.bananacompany.domain.Result
