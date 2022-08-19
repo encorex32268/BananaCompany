@@ -21,18 +21,12 @@ import javax.inject.Inject
 @AndroidEntryPoint
 class MainActivity : ComponentActivity() {
 
-    @Inject
-    lateinit var dataSourceRepositoryImpl: DataSourceRepositoryImpl
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContent {
             BananaCompanyTheme {
               LaunchedEffect(key1 = Unit){
-
-                  val data = dataSourceRepositoryImpl.getAllEmployee()
-                  Log.d("TAG", "onCreate: ${data}")
-
 
               }
             }

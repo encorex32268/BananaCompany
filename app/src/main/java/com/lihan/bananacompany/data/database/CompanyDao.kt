@@ -11,7 +11,7 @@ import kotlinx.coroutines.flow.Flow
 interface CompanyDao {
 
     @Insert(onConflict = OnConflictStrategy.REPLACE)
-    suspend fun insert(employeeEntity: EmployeeEntity)
+    suspend fun insert(employeeEntities: List<EmployeeEntity>)
 
     @Query("select * from EmployeeEntity ")
     fun getAllEmployee() : Flow<List<EmployeeEntity>>

@@ -4,7 +4,7 @@ import com.lihan.bananacompany.domain.model.Employee
 import kotlinx.coroutines.flow.Flow
 
 
-interface CompanyRepository {
-    suspend fun insert(employee: Employee)
+interface LocalDataRepository {
+    suspend fun insert(employees: List<Employee>)
     fun getAllEmployee() : Flow<List<Employee>>
 }

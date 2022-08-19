@@ -1,17 +1,14 @@
 package com.lihan.bananacompany.di
 
-import android.app.Application
 import android.content.Context
-import android.os.Build
 import android.util.Log
 import androidx.room.Room
-import androidx.room.RoomDatabase
-import com.lihan.bananacompany.BuildConfig
-import com.lihan.bananacompany.data.company.local.CompanyRepositoryImpl
+import com.lihan.bananacompany.data.company.local.LocalDataRepositoryImpl
 import com.lihan.bananacompany.data.company.remote.DataSourceRepositoryImpl
+import com.lihan.bananacompany.data.database.CompanyDao
 import com.lihan.bananacompany.data.database.CompanyDataBase
 import com.lihan.bananacompany.domain.remote.DataSourceRepository
-import com.lihan.bananacompany.domain.repository.CompanyRepository
+import com.lihan.bananacompany.domain.repository.LocalDataRepository
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -23,7 +20,6 @@ import io.ktor.client.features.json.*
 import io.ktor.client.features.json.serializer.*
 import io.ktor.client.features.logging.*
 import io.ktor.client.request.*
-import kotlinx.serialization.json.Json
 import javax.inject.Singleton
 
 
@@ -45,8 +41,8 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesCompanyRepository(db : CompanyDataBase) : CompanyRepository{
-        return CompanyRepositoryImpl(db.companyDao)
+    fun providesCompanyRepository(db : CompanyDataBase) : LocalDataRepository{
+        return LocalDataRepositoryImpl(db.companyDao)
     }
 
 
@@ -86,6 +82,12 @@ object AppModule {
     @Singleton
     fun providesDataSourceRepository(httpClient: HttpClient) : DataSourceRepository{
         return DataSourceRepositoryImpl(httpClient)
+    }
+
+    @Provides
+    @Singleton
+    fun providesLocalDataRepository(dao: CompanyDao) : LocalDataRepository{
+        return LocalDataRepositoryImpl(dao)
     }
 
 
