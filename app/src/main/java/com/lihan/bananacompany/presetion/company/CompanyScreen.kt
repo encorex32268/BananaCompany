@@ -1,6 +1,8 @@
 package com.lihan.bananacompany.presetion.company
 
 import androidx.compose.foundation.layout.*
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.foundation.lazy.items
 import androidx.compose.material.CircularProgressIndicator
 import androidx.compose.material.MaterialTheme
 import androidx.compose.material.Text
@@ -29,10 +31,12 @@ fun CompanyScreen(
             Column(
                 modifier = Modifier.fillMaxWidth()
             ) {
-             result.data.forEach {
-                Text(text = it._id)
-                Spacer(modifier = Modifier.width(2.dp))
-                }
+             LazyColumn{
+                 items(result.data){
+                     EmployeeItem(employee = it)
+
+                 }
+             }
             }
         }
         is CompanyUiState.Fail->{
