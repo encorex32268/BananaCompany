@@ -1,4 +1,4 @@
-package com.lihan.bananacompany.presetion.company
+package com.lihan.bananacompany.presentation.company
 
 import androidx.compose.foundation.Image
 import androidx.compose.foundation.layout.*
@@ -7,11 +7,9 @@ import androidx.compose.material.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
-import androidx.compose.ui.input.pointer.pointerHoverIcon
 import androidx.compose.ui.layout.LastBaseline
 import androidx.compose.ui.res.painterResource
 import androidx.compose.ui.unit.dp
-import com.lihan.bananacompany.Constants
 import com.lihan.bananacompany.R
 import com.lihan.bananacompany.domain.model.Employee
 

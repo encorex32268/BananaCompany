@@ -16,7 +16,7 @@ data class Employee(
     val email: String,
     val eyeColor: String,
     val favoriteFruit: String,
-    val friends: List<Friend> = emptyList(),
+    val friends: List<Friend>,
     val gender: String,
     val greeting: String,
     val guid: String,
@@ -28,7 +28,5 @@ data class Employee(
     val phone: String,
     val picture: String,
     val registered: String,
-    val tags: List<String> = emptyList()
-) : Parcelable{
-
-}
+    val tags: List<String>
+) : Parcelable

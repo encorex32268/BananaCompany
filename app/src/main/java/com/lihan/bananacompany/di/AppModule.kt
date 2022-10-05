@@ -1,16 +1,15 @@
 package com.lihan.bananacompany.di
 
 import android.content.Context
-import android.util.Log
 import androidx.room.Room
-import com.lihan.bananacompany.data.company.CompanyRepository
-import com.lihan.bananacompany.data.company.CompanyRepositoryImpl
-import com.lihan.bananacompany.data.company.local.LocalDataRepositoryImpl
-import com.lihan.bananacompany.data.company.remote.DataSourceRepositoryImpl
-import com.lihan.bananacompany.data.database.CompanyDao
-import com.lihan.bananacompany.data.database.CompanyDataBase
-import com.lihan.bananacompany.domain.remote.DataSourceRepository
-import com.lihan.bananacompany.domain.repository.LocalDataRepository
+import com.google.gson.Gson
+import com.lihan.bananacompany.data.local.Converters
+import com.lihan.bananacompany.data.local.EmployeeDao
+import com.lihan.bananacompany.data.local.EmployeeDatabase
+import com.lihan.bananacompany.data.repository.EmployeeRepositoryImpl
+import com.lihan.bananacompany.data.util.GsonParser
+import com.lihan.bananacompany.domain.repository.EmployeeRepository
+import com.lihan.bananacompany.domain.use_case.GetEmployees
 import dagger.Module
 import dagger.Provides
 import dagger.hilt.InstallIn
@@ -32,17 +31,20 @@ object AppModule {
 
     @Provides
     @Singleton
-    fun providesCompanyDatabase(@ApplicationContext context : Context) : CompanyDataBase{
+    fun providesCompanyDatabase(@ApplicationContext context : Context) : EmployeeDatabase {
         return Room.databaseBuilder(
             context,
-            CompanyDataBase::class.java,
+            EmployeeDatabase::class.java,
             "company_db"
-        ).build()
+        ).addTypeConverter(Converters(GsonParser(Gson())))
+            .build()
     }
 
     @Provides
     @Singleton
-    fun providesCompanyDao(companyDataBase: CompanyDataBase) = companyDataBase.companyDao
+    fun providesEmployeeDao(db: EmployeeDatabase) : EmployeeDao{
+       return db.employeeDao
+    }
 
 
     @Provides
@@ -76,6 +78,27 @@ object AppModule {
             }
         }
     }
+
+
+
+    @Provides
+    @Singleton
+    fun providesEmployeeRepository(
+        httpClient: HttpClient,
+        dao: EmployeeDao
+    ) : EmployeeRepository{
+        return EmployeeRepositoryImpl(
+            httpClient = httpClient,
+            dao = dao
+        )
+    }
+
+    @Provides
+    @Singleton
+    fun providesGetEmployeesUseCase(employeeRepository: EmployeeRepository) : GetEmployees {
+        return GetEmployees(employeeRepository = employeeRepository)
+    }
+
 
 
 
